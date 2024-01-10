@@ -1,0 +1,56 @@
+# Get http://localhost:3000/listings
+
+# ###
+
+# POST http://localhost:3000/new/listing
+# Content-Type: application/json
+
+# {
+#   "name": "v",
+#   "price": "2v0",
+#   "contactName": "vlvad",
+#   "contactMethod": "916v4771817"
+# }
+
+# ###
+
+# GET  http://localhost:3000/delete/listing
+# Content-Type: application/json
+
+# {
+#   "id": "649a62259496a0a8bf24b812"
+# }
+
+# ###
+
+# GET  http://localhost:3000/delete/listing
+# Content-Type: application/json
+
+# {
+#   "id": "64bdd142dcda1c33d413a004"
+# }
+
+###
+Get http://localhost:3000/homeElements
+
+
+###
+POST http://localhost:3000/new/homeElement
+Content-Type: application/json
+
+{
+  "title": "v",
+  "description": "2v0",
+  "url": "vlvad"
+}
+
+
+###
+
+GET  http://localhost:3000/delete/homeElement
+Content-Type: application/json
+
+{
+  "id": "64bde4a3e9afad97c40e9ab7"
+}
+
