@@ -8,7 +8,7 @@ import "../index.css";
 
 export default function Header({ activeElement }) {
   Header.propTypes = {
-    activeElement: PropTypes.String,
+    activeElement: PropTypes.string,
   };
 
   return (

@@ -92,3 +92,13 @@ header {
   background-color: rgb(2, 199, 2);
   color: rgb(45, 45, 45);
 }
+
+.popUp {
+  background-color: rgba(10, 67, 51, 1);
+  border: solid black 5px;
+  width: 50%;
+  height: 50%;
+  position: absolute !important;
+  left: 0;
+  top: 0;
+}

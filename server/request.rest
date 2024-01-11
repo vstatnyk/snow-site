@@ -41,16 +41,17 @@ Content-Type: application/json
 {
   "title": "v",
   "description": "2v0",
-  "url": "vlvad"
+  "url": "vlvad",
+  "urlPlaceHolder": "urlPlaceHolder"
 }
 
 
 ###
 
-GET  http://localhost:3000/delete/homeElement
+POST  http://localhost:3000/delete/homeElement
 Content-Type: application/json
 
 {
-  "id": "64bde4a3e9afad97c40e9ab7"
+  "key": "generateKey() "
 }
 

@@ -47,6 +47,8 @@ app.post("/new/homeElement", async (req, res) => {
     title: req.body.title,
     description: req.body.description,
     url: req.body.url,
+    urlPlaceHolder: req.body.urlPlaceHolder,
+    key: req.body.key,
   });
 
   newElement.save();
@@ -54,9 +56,9 @@ app.post("/new/homeElement", async (req, res) => {
   // res.json({ us: "hi" });
 });
 
-app.get("/delete/homeElement", async (req, res) => {
-  const id = req.body.id;
-  const listing = await SnowHome.findById(id);
+app.post("/delete/homeElement", async (req, res) => {
+  const id = req.body.key;
+  const listing = await SnowHome.findOne({ key: id });
   await SnowHome.deleteOne(listing);
   const listings = await SnowHome.find();
   res.json(listings);
