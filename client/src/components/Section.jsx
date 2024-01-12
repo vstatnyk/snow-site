@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../index.css";
 
 export default function Section(props) {
-  const key = props.key;
+  // const key = props.key;
   function refreshPage() {
     window.location.reload(false);
   }

@@ -1,15 +1,15 @@
-// import PropTypes from "prop-types";
-// import React from 'react';
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
+import { useLogin } from "../contexts/loginContext.jsx";
 import "../index.css";
-// import prop
-// import PropTypes from "prop-types";
 
 export default function Header({ activeElement }) {
-  Header.propTypes = {
-    activeElement: PropTypes.string,
-  };
+  const { isLoggedIn, setIsLoggedIn } = useLogin();
+
+  function logout() {
+    localStorage.setItem("login", false);
+    setIsLoggedIn(false);
+  }
 
   return (
     <>
@@ -35,9 +35,29 @@ export default function Header({ activeElement }) {
               About
             </Link>
           </li>
+          {isLoggedIn ? (
+            <li>
+              <button onClick={logout}>Logout</button>
+            </li>
+          ) : (
+            <li>
+              <Link
+                className={
+                  activeElement === "login" ? "navElement_active" : "navelement"
+                }
+                to="/login"
+              >
+                Login
+              </Link>
+            </li>
+          )}
         </ul>
       </header>
       <div className="spacer"></div>
     </>
   );
 }
+
+Header.propTypes = {
+  activeElement: PropTypes.string,
+};

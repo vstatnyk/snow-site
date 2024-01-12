@@ -2,6 +2,8 @@ const express = require("express");
 const fs = require("fs");
 const mongoose = require("mongoose");
 const cors = require("cors"); // Import the cors module
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 require("dotenv").config();
 
 // var mime = {
@@ -34,6 +36,7 @@ mongoose
 
 //schemas requirements
 const SnowHome = require("./models/SnowHome");
+const Login = require("./models/Login");
 
 // Home
 app.get("/homeElements", async (req, res) => {
@@ -48,7 +51,7 @@ app.post("/new/homeElement", async (req, res) => {
     description: req.body.description,
     url: req.body.url,
     urlPlaceHolder: req.body.urlPlaceHolder,
-    key: req.body.key,
+    key: Math.random().toString(36).substring(7),
   });
 
   newElement.save();
@@ -62,6 +65,62 @@ app.post("/delete/homeElement", async (req, res) => {
   await SnowHome.deleteOne(listing);
   const listings = await SnowHome.find();
   res.json(listings);
+});
+
+// Login
+app.get("/login", async (req, res) => {
+  const elements = await Login.find();
+  res.json(elements);
+  // res.json({ us: "hi" });
+});
+
+app.post("/new/login", async (req, res) => {
+  const email = await Login.findOne({ email: req.body.email });
+  if (!email) {
+    try {
+      const passwordh = await bcrypt.hash(req.body.password, saltRounds);
+
+      const newLogin = new Login({
+        email: req.body.email,
+        password: passwordh,
+        type: req.body.type,
+        key: Math.random().toString(36).substring(7),
+      });
+
+      await newLogin.save();
+      res.json(newLogin);
+    } catch (error) {
+      // handle the error, maybe send a response with error details
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  } else {
+    res.json({ error: "Email already exists" });
+  }
+});
+
+app.post("/signIn", async (req, res) => {
+  // const listing = await Login.findOne(req.body.email);
+  // await Login.deleteOne(listing);
+  // const listings = await Login.find();
+  // res.json(listings);
+  const login = await Login.findOne({ email: req.body.email });
+  if (!login) {
+    console.log("email does not exist");
+    res.json({ error: "Email does not exist" });
+  } else {
+    const password = await bcrypt.compare(req.body.password, login.password);
+    console.log(password);
+    if (password) {
+      console.log("password is correct");
+      console.log(login);
+      res.json(login);
+    } else {
+      // userPassword;
+      res.json({ error: "Password is incorrect" });
+    }
+  }
+  return true;
+  // console.log(email);
 });
 
 // Marketplace

@@ -21,7 +21,6 @@ export default function PopUp({ sharedState, setSharedState }) {
       description: description,
       url: url,
       urlPlaceHolder: urlPlaceHolder,
-      key: Math.random().toString(36).substring(7),
     };
     fetch("http://localhost:3000/new/homeElement", {
       method: "POST",

@@ -55,3 +55,27 @@ Content-Type: application/json
   "key": "generateKey() "
 }
 
+###
+Get http://localhost:3000/login
+
+###
+POST http://localhost:3000/new/login
+Content-Type: application/json
+
+{
+  "email": "sacstatesnowclub@gmail.com",
+  "password": "Snowclubrocks!",
+  "type": "admin"
+}
+###
+
+GET http://localhost:3000/signin
+
+###
+POST http://localhost:3000/signin
+Content-Type: application/json
+
+{
+  "email": "sacstatesnowclub@gmail.com",
+  "password": "Snowclubrocks!"
+}
