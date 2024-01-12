@@ -44,18 +44,21 @@ export default function Login() {
         },
         body: JSON.stringify(data),
       });
-
+      // console.log(response.data);
       if (!response.ok) {
         throw new Error("Failed to login");
       }
 
       const responseData = await response.json();
+      if (responseData.error) {
+        throw new Error(responseData.error);
+      }
       console.log("Success:", responseData);
 
       // Assuming successful login updates the login state
       localStorage.setItem("login", true);
       setIsLoggedIn(true); // Update state, assuming setIsLoggedIn is defined in your component or context
-
+      navigate("/home");
       // Redirect user here to the desired page after successful login
       // navigate('/path-after-login'); // Use navigate from react-router-dom if you have it
     } catch (error) {
@@ -64,7 +67,6 @@ export default function Login() {
       localStorage.setItem("login", false);
       setIsLoggedIn(false); // Update state on error
     }
-    navigate("/home");
   };
 
   return (

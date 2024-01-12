@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import PopUp from "../components/PopUp";
 import Section from "../components/Section";
+import { useLogin } from "../contexts/loginContext.jsx";
 import "../index.css";
 
 export default function Home() {
   const [homeElements, setHomeElements] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const { isLoggedIn } = useLogin();
 
   useEffect(() => {
     fetch("http://localhost:3000/homeElements").then((response) =>
@@ -45,7 +47,15 @@ export default function Home() {
       {showPopup ? (
         <PopUp sharedState={showPopup} setSharedState={setShowPopup} />
       ) : (
-        <button onClick={togglePopUp}> click me</button>
+        <></>
+        // <button onClick={togglePopUp}> click me</button>
+      )}
+      {isLoggedIn ? (
+        <button onClick={togglePopUp} className="addButton">
+          add section+
+        </button>
+      ) : (
+        <></>
       )}
     </>
   );

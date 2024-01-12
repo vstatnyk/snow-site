@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
 // import { useState } from "react";/
 import { Link } from "react-router-dom";
+import { useLogin } from "../contexts/loginContext.jsx";
 import "../index.css";
 
 export default function Section(props) {
-  // const key = props.key;
+  const { isLoggedIn } = useLogin();
+
   function refreshPage() {
     window.location.reload(false);
   }
@@ -38,7 +40,7 @@ export default function Section(props) {
           {props.urlPlaceHolder}
         </Link>
       )}
-      <button onClick={handleDelete}>delete</button>
+      {!isLoggedIn ? <></> : <button onClick={handleDelete}>delete</button>}
     </div>
   );
 }
