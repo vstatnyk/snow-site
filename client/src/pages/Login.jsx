@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
-// import { LoginContext } from "../contexts/loginContext";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../contexts/loginContext.jsx";
+import "../index.css";
 
 export default function Login() {
   const [userEmail, setEmail] = useState("");
@@ -16,7 +15,7 @@ export default function Login() {
     if (localStorage.getItem("login") === "true") {
       navigate("/home");
     }
-  }, []);
+  }, [isLoggedIn, navigate]);
 
   const handleEmailChange = (e) => {
     console.log(e.target.value);
@@ -74,26 +73,25 @@ export default function Login() {
       {isLoggedIn ? (
         <></>
       ) : (
-        <div>
-          <Header activeElement="login" />
-          <h2>Login</h2>
+        <div className="login">
+          {/* <Header activeElement="login" /> */}
+          {/* <h2>Login</h2> */}
           <form>
-            <label>
-              email:
-              <input type="text" onChange={handleEmailChange} />
-            </label>
-            <br />
-            <label>
-              Password:
-              <input
-                type="password"
-                // value={userPassword}
-                onChange={handlePasswordChange}
-              />
-            </label>
-            <br />
+            <input
+              type="text"
+              onChange={handleEmailChange}
+              placeholder="email"
+            />
+            {/* <br /> */}
+            <input
+              type="password"
+              // value={userPassword}
+              onChange={handlePasswordChange}
+              placeholder="password"
+            />
+            {/* <br /> */}
             <button type="submit" onClick={handleSubmit}>
-              Login
+              Sign-in
             </button>
           </form>
         </div>

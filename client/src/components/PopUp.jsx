@@ -65,38 +65,42 @@ export default function PopUp({ sharedState, setSharedState }) {
   return (
     <>
       <div className="popUp">
-        <label>
-          Title:
-          <br />
-          <input type="text" name="title" onChange={handleTitleChange} />
-        </label>
-        <br />
-        <label>
-          Description:
-          <textarea
-            rows="5"
-            cols="60"
-            name="description"
-            placeholder="Enter Description here"
-            onChange={handleDescriptionChange}
-          ></textarea>
-          <label>
-            Url Placeholder:
-            <br />
-            <input
-              type="text"
-              name="urlPlaceHolder"
-              onChange={handleUrlPlaceHolderChange}
-            />
-          </label>
-          <label>
-            Url:
-            <br />
-            <input type="url" name="url" onChange={handleUrlChange} />
-          </label>
-        </label>
-        <input type="submit" value="Submit" onClick={() => handleSubmit()} />
-        <button onClick={() => setSharedState(!sharedState)}>cancel</button>
+        <input
+          placeholder="Title"
+          type="text"
+          name="title"
+          onChange={handleTitleChange}
+        />
+        <textarea
+          rows="5"
+          cols="30"
+          name="description"
+          placeholder="Enter Description here"
+          onChange={handleDescriptionChange}
+        ></textarea>
+        <input
+          placeholder="Url PlaceHolder"
+          type="text"
+          name="urlPlaceHolder"
+          onChange={handleUrlPlaceHolderChange}
+        />
+        <input
+          placeholder="Url"
+          type="url"
+          name="url"
+          onChange={handleUrlChange}
+        />
+        <button className="submit" onClick={() => handleSubmit()}>
+          {" "}
+          submit{" "}
+        </button>
+        <button
+          className="cancel"
+          // style={{ backgroundColor: "red" }}
+          onClick={() => setSharedState(!sharedState)}
+        >
+          cancel
+        </button>
       </div>
     </>
   );

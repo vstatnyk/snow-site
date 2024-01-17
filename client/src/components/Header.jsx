@@ -12,49 +12,49 @@ export default function Header({ activeElement }) {
   }
 
   return (
-    <>
-      <header>
-        <ul className="navbar">
+    <header>
+      <ul className="navbar">
+        <li>
+          <Link
+            className={
+              activeElement === "home" ? "navElement_active" : "navElement"
+            }
+            to="/home"
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={
+              activeElement === "about" ? "navElement_active" : "navElement"
+            }
+            to="/about"
+          >
+            About
+          </Link>
+        </li>
+        {isLoggedIn ? (
+          <li>
+            <button className="navElementButton" onClick={logout}>
+              Logout
+            </button>
+          </li>
+        ) : (
           <li>
             <Link
               className={
-                activeElement === "home" ? "navElement_active" : "navelement"
+                activeElement === "login" ? "navElement_active" : "navElement"
               }
-              to="/home"
+              to="/login"
             >
-              Home
+              Login
             </Link>
           </li>
-          <li>
-            <Link
-              className={
-                activeElement === "about" ? "navElement_active" : "navelement"
-              }
-              to="/about"
-            >
-              About
-            </Link>
-          </li>
-          {isLoggedIn ? (
-            <li>
-              <button onClick={logout}>Logout</button>
-            </li>
-          ) : (
-            <li>
-              <Link
-                className={
-                  activeElement === "login" ? "navElement_active" : "navelement"
-                }
-                to="/login"
-              >
-                Login
-              </Link>
-            </li>
-          )}
-        </ul>
-      </header>
-      <div className="spacer"></div>
-    </>
+        )}
+      </ul>
+      {/* <div className="spacer"></div> */}
+    </header>
   );
 }
 

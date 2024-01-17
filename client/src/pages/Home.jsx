@@ -42,20 +42,27 @@ export default function Home() {
 
   return (
     <>
-      <Header activeElement="home" />
-      {!homeElements ? <>no elements found</> : <div>{init()}</div>}
-      {showPopup ? (
-        <PopUp sharedState={showPopup} setSharedState={setShowPopup} />
-      ) : (
-        <></>
-        // <button onClick={togglePopUp}> click me</button>
+      {showPopup && (
+        <>
+          <div className="spacer"></div>
+          <h1>Add New Event</h1>
+          <PopUp sharedState={showPopup} setSharedState={setShowPopup} />
+        </>
       )}
-      {isLoggedIn ? (
-        <button onClick={togglePopUp} className="addButton">
-          add section+
-        </button>
-      ) : (
-        <></>
+      {!showPopup && (
+        <>
+          <Header activeElement="home" />
+          <div className="spacer"></div>
+          <h1>Upcoming events</h1>
+          <div className="home">
+            {!homeElements ? <>no elements found</> : <div>{init()}</div>}
+            {isLoggedIn && (
+              <button onClick={togglePopUp} className="addButton">
+                add event +
+              </button>
+            )}
+          </div>
+        </>
       )}
     </>
   );

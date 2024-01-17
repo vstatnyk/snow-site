@@ -1,104 +1,384 @@
-/* main page */
+:root {
+  --lighterGreen: rgb(0, 192, 0);
+  --black: rgb(0, 0, 0);
+  --white: rgb(255, 255, 255);
+  --gold: rgb(205, 186, 145);
+  --darkerGold: rgb(163, 144, 106);
+}
+
+/* all pages */
 body {
   font-family: Arial, Helvetica, sans-serif;
-  /* background: linear-gradient(
-    to right,
-    rgba(200, 182, 134, 1) 49%,
-    rgba(10, 67, 51, 1) 100%
-  ); */
-  /* background: rgba(1, 98, 33, 1); */
-  background: rgba(200, 182, 134, 1);
-  padding: 0px;
-  margin: 0px;
+  background: var(--white);
+
+  margin: 0;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* Header component */
-header {
-  background-color: rgba(10, 67, 51, 1);
-  position: fixed;
-  /* height: 50px; */
-  left: 0;
-  width: 100%;
-
-  padding: 10px;
-}
 
 .navbar {
+  position: fixed;
   display: flex;
   list-style-type: none;
-  border: solid rebeccapurple 2px;
-  /* margin: 0 auto; */
+  height: 80px;
+  margin: 0 auto;
+  padding: 0px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  justify-self: top;
 }
 
-.navelement {
-  background-color: black;
-  color: white;
-  border-radius: 15px;
-  padding: 15px;
-  border: 2px solid white;
+.navElement {
+  color: black;
+  padding: 31px;
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
-  margin-right: 5px;
 }
 
-.navelement_active {
-  background-color: rgb(255, 255, 255);
-  color: aliceblue;
-  border-radius: 5px;
-  padding: 5px;
-  border: 2px solid white;
+.navElement_active {
+  color: var(--gold);
+  padding: 31px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
 }
 
-.navelement:hover {
-  background-color: grey;
-}
-
-.spacer {
-  height: 75px;
-}
-
-/* section component */
-.Section {
-  color: white;
-  margin: 0 auto;
-  background-color: rgba(10, 67, 51, 1);
-  justify-content: center;
-  justify-items: center;
-  display: grid;
-  border: solid black 5px;
+.navElement:hover {
+  background-color: var(--gold);
   border-radius: 25px;
-  max-width: 1500px;
-  width: 95%;
-
-  margin-top: 5px;
-  padding: 20px;
+  cursor: pointer;
 }
 
-.section-url {
-  background-color: rgb(0, 123, 41);
+.navElementButton {
+  background-color: var(--white);
+  color: black;
+  padding: 31px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+}
+
+.navElementButton:hover {
+  padding: 31px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: var(--gold);
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* Login page */
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid none;
+  border-radius: 25px;
+  width: 90vw;
+  max-width: 600px;
+  height: 90vw;
+  max-height: 600px;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+}
+
+.login input {
+  width: 100%;
+  text-decoration: none;
+
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 31px;
+  margin: 10px;
+  text-align: center;
+}
+
+.login input:hover {
+  padding: 31px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.login input:focus {
+  outline: none;
+  font-weight: bold;
+}
+
+.login button {
+  background-color: green;
   color: white;
-  border-radius: 15px;
-  padding: 15px;
-  border: 5px solid rgb(119, 119, 119);
+  width: 100%;
   text-decoration: none;
   font-weight: bold;
   font-size: 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* padding: 31px; */
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+}
+
+.login button:hover {
+  background-color: var(--lighterGreen);
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+/* Home page */
+.home {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  justify-items: center;
+  /* height: 100vh; */
+}
+
+/* section component */
+.spacer {
+  height: 80px;
+}
+
+.section {
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  padding: 10px;
+}
+.accordion,
+.bottomAccordion {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 700px;
+  height: auto;
+  border: 2px solid var(--gold);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.accordion:hover {
+  background-color: var(--gold);
+  cursor: pointer;
+}
+
+.accordion .title {
+  flex: 1;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.accordion .icon,
+.accordion .iconRotate {
+  font-size: 30px;
+  margin-left: auto;
+  align-self: left;
+  transition: transform 0.6s ease;
+}
+
+.accordion .iconRotate {
+  transform: rotate(180deg);
+}
+
+.bottomAccordion {
+  border-top: none;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.addButton,
+.deleteButton {
+  text-decoration: none;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 auto;
+  cursor: pointer;
+  max-width: 75%;
+  width: 300px;
+  margin-top: 12px;
+}
+
+.deleteButton {
+  background-color: red;
+}
+
+.deleteButton:hover {
+  background-color: rgb(192, 0, 0);
+}
+
+.addButton:hover {
+  background-color: rgb(0, 192, 0);
+}
+
+.section-url {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bold;
 }
 
 .section-url:hover {
-  background-color: rgb(2, 199, 2);
-  color: rgb(45, 45, 45);
+  background-color: black;
+  color: white;
 }
 
+/* .popUp {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  border-radius: 25px;
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001; 
+
+} */
+
+/* Login page */
+
 .popUp {
-  background-color: rgba(10, 67, 51, 1);
-  border: solid black 5px;
-  width: 50%;
-  height: 50%;
-  position: absolute !important;
-  left: 0;
-  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 10%;
+  border: 2px solid none;
+  border-radius: 25px;
+  width: 90vw;
+  max-width: 600px;
+  min-width: none;
+  height: 90vh;
+  min-height: 700px;
+  max-height: 1000px;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 2px solid black;
+}
+
+.popUp input,
+.popUp textarea {
+  max-width: 75%;
+  width: 1000px;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 31px;
+  margin: 10px;
+  text-align: center;
+}
+
+.popUp input:hover,
+.popUp textarea:hover {
+  padding: 31px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.popUp input:focus,
+.popUp textarea:focus {
+  outline: none;
+  font-weight: bold;
+}
+
+.submit,
+.cancel {
+  background-color: green;
+  color: white;
+  max-width: 75%;
+  width: 1000px;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 31px;
+  margin: 10px;
+  text-align: center;
+}
+.cancel {
+  background-color: red;
+}
+
+.submit:hover,
+.cancel:hover {
+  background-color: var(--lighterGreen);
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.cancel:hover {
+  background-color: rgb(192, 0, 0);
 }
