@@ -20,12 +20,15 @@ export default function Home() {
 
   function init() {
     const elements = homeElements.map((element) => {
+      if (element.urlPlaceHolder == null || element.urlPlaceHolder == "") {
+        element.urlPlaceHolder = "Associated Link";
+      }
       console.log(element);
+
       return (
         <Section
           key={element.key}
           elementKey={element.key}
-          className="hi"
           title={element.title}
           text={element.description}
           url={element.url}
@@ -53,6 +56,31 @@ export default function Home() {
         <>
           <Header activeElement="home" />
           <div className="spacer"></div>
+          <h1>Our Social Media</h1>
+          <div className="socials">
+            <a
+              href="https://discord.gg/gxZVca9uZU"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="/blackDisc.png" alt="" className="discord" />
+            </a>
+            <a
+              href="https://www.tiktok.com/@sacsnowclub"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="/blackTikTok.png" alt="" className="tiktok" />
+            </a>
+            <a
+              href="https://www.instagram.com/sacsnowclub/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src="/blackIG.png" alt="" className="instagram" />
+            </a>
+          </div>
+
           <h1>Upcoming events</h1>
           <div className="home">
             {!homeElements ? <>no elements found</> : <div>{init()}</div>}

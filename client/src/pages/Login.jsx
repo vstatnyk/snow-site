@@ -6,25 +6,38 @@ import "../index.css";
 export default function Login() {
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [loginError, setloginError] = useState(false);
   const { isLoggedIn, setIsLoggedIn } = useLogin();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
     if (localStorage.getItem("login") === "true") {
       navigate("/home");
     }
-  }, [isLoggedIn, navigate]);
+    if (userEmail.includes("@") && userPassword !== "") {
+      setButtonDisabled(false);
+    }
+  }, [isLoggedIn, navigate, userEmail, userPassword]);
+
+  function checkButton(email = userEmail, password = userPassword) {
+    if (email.includes("@") && password !== "") {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }
 
   const handleEmailChange = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
+    checkButton(e.target.value, userPassword);
   };
 
   const handlePasswordChange = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
+    checkButton(userEmail, e.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -52,7 +65,7 @@ export default function Login() {
       if (responseData.error) {
         throw new Error(responseData.error);
       }
-      console.log("Success:", responseData);
+      // console.log("Success:", responseData);
 
       // Assuming successful login updates the login state
       localStorage.setItem("login", true);
@@ -61,8 +74,9 @@ export default function Login() {
       // Redirect user here to the desired page after successful login
       // navigate('/path-after-login'); // Use navigate from react-router-dom if you have it
     } catch (error) {
-      alert("An error occurred. Please try again.");
-      console.error("Error:", error);
+      // alert("An error occurred. Please try again.");
+      // console.error("Error:", error);
+      setloginError(true);
       localStorage.setItem("login", false);
       setIsLoggedIn(false); // Update state on error
     }
@@ -74,25 +88,48 @@ export default function Login() {
         <></>
       ) : (
         <div className="login">
-          {/* <Header activeElement="login" /> */}
-          {/* <h2>Login</h2> */}
           <form>
-            <input
-              type="text"
-              onChange={handleEmailChange}
-              placeholder="email"
-            />
-            {/* <br /> */}
-            <input
-              type="password"
-              // value={userPassword}
-              onChange={handlePasswordChange}
-              placeholder="password"
-            />
-            {/* <br /> */}
-            <button type="submit" onClick={handleSubmit}>
-              Sign-in
-            </button>
+            {loginError ? (
+              <>
+                <input
+                  type="text"
+                  onChange={handleEmailChange}
+                  placeholder="email"
+                  className="loginError"
+                />
+                <input
+                  type="password"
+                  onChange={handlePasswordChange}
+                  placeholder="password"
+                  className="loginError"
+                />
+                <div className="loginErrorDiv">
+                  Wrong email or password, please try again
+                </div>
+              </>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  onChange={handleEmailChange}
+                  placeholder="email"
+                />
+                <input
+                  type="password"
+                  onChange={handlePasswordChange}
+                  placeholder="password"
+                />
+              </>
+            )}
+            {buttonDisabled ? (
+              <button type="submit" disabled="true" onClick={handleSubmit}>
+                Sign-in
+              </button>
+            ) : (
+              <button type="submit" onClick={handleSubmit}>
+                Sign-in
+              </button>
+            )}
           </form>
         </div>
       )}

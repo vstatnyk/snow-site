@@ -3,25 +3,44 @@ import { useState } from "react";
 import "../index.css";
 
 export default function PopUp({ sharedState, setSharedState }) {
-  const [title, setTitle] = useState(null);
-  const [description, setDescription] = useState(null);
-  const [urlPlaceHolder, setUrlPlaceHolder] = useState(null);
-  const [url, setUrl] = useState(null);
+  const [data, setData] = useState({
+    title: null,
+    description: null,
+    url: null,
+    urlPlaceHolder: null,
+  });
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  function checkButton(
+    title = data.title,
+    description = data.description
+    // url = data.url,
+    // urlPlaceHolder = data.urlPlaceHolder
+  ) {
+    if (
+      title != "" &&
+      title != null &&
+      description != "" &&
+      description != null
+    ) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }
 
   function refreshPage() {
     window.location.reload(false);
   }
 
   const handleSubmit = () => {
-    console.log(title);
-    console.log(description);
-    console.log(url);
-    const data = {
-      title: title,
-      description: description,
-      url: url,
-      urlPlaceHolder: urlPlaceHolder,
-    };
+    if (
+      (data.urlPlaceHolder != null || data.urlPlaceHolder != "") &&
+      (!data.url.includes("http://") || !data.url.includes("https://"))
+    ) {
+      data.url = "http://" + data.url;
+    }
+
     fetch("http://localhost:3000/new/homeElement", {
       method: "POST",
       headers: {
@@ -43,23 +62,36 @@ export default function PopUp({ sharedState, setSharedState }) {
   };
 
   const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-    console.log(title);
+    checkButton(event.target.value, data.description);
+    setData({
+      ...data,
+      title: event.target.value,
+    });
+    console.log(data);
   };
 
   const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-    console.log(description);
+    checkButton(data.title, event.target.value);
+    setData({
+      ...data,
+      description: event.target.value,
+    });
   };
 
   const handleUrlPlaceHolderChange = (event) => {
-    setUrlPlaceHolder(event.target.value);
-    console.log(urlPlaceHolder);
+    checkButton();
+    setData({
+      ...data,
+      urlPlaceHolder: event.target.value,
+    });
   };
 
   const handleUrlChange = (event) => {
-    setUrl(event.target.value);
-    console.log(url);
+    checkButton();
+    setData({
+      ...data,
+      url: event.target.value,
+    });
   };
 
   return (
@@ -90,10 +122,18 @@ export default function PopUp({ sharedState, setSharedState }) {
           name="url"
           onChange={handleUrlChange}
         />
-        <button className="submit" onClick={() => handleSubmit()}>
-          {" "}
-          submit{" "}
-        </button>
+        {/* <button className="submit" onClick={() => handleSubmit()}>
+          submit
+        </button> */}
+        {buttonDisabled ? (
+          <button className="submit" disabled={true}>
+            Submit
+          </button>
+        ) : (
+          <button className="submit" onClick={() => handleSubmit()}>
+            Submit
+          </button>
+        )}
         <button
           className="cancel"
           // style={{ backgroundColor: "red" }}

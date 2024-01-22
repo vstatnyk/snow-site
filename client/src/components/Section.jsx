@@ -67,16 +67,17 @@ export default function Section(props) {
                 </button>
               ) : (
                 <div className="finalDelete">
-                  Are you sure?
-                  <button
-                    className="cancel"
-                    onClick={() => setShowDelete(!showDelete)}
-                  >
-                    cancel
-                  </button>
-                  <button className="delete" onClick={handleDelete}>
-                    delete
-                  </button>
+                  <br />
+                  <h2>Are you sure?</h2>
+                  <div className="buttonBox">
+                    <button
+                      className="finalButtonCancel"
+                      onClick={() => setShowDelete(!showDelete)}
+                    >
+                      cancel
+                    </button>
+                    <button onClick={handleDelete}>delete</button>
+                  </div>
                 </div>
               )}
             </>

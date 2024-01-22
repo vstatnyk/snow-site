@@ -12,6 +12,7 @@ body {
   background: var(--white);
 
   margin: 0;
+  /* background: linear-gradient(#000, #000) no-repeat center/2px 100%; */
 }
 
 h1 {
@@ -122,6 +123,16 @@ h1 {
   text-align: center;
 }
 
+.login .loginError {
+  color: red;
+
+  border: 2px solid red;
+}
+.loginErrorDiv {
+  color: red;
+  text-align: center;
+}
+
 .login input:hover {
   padding: 31px;
   text-decoration: none;
@@ -162,6 +173,23 @@ h1 {
   cursor: pointer;
 }
 
+.login button:disabled {
+  background-color: grey;
+  color: white;
+  width: 100%;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+  cursor: not-allowed;
+}
+
 /* Home page */
 .home {
   display: flex;
@@ -179,8 +207,9 @@ h1 {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+
   width: 100%;
-  padding: 10px;
+  margin-top: 10px;
 }
 .accordion,
 .bottomAccordion {
@@ -198,6 +227,7 @@ h1 {
   font-weight: bold;
   padding: 12px;
   box-sizing: border-box;
+  white-space: pre-line;
 }
 
 .accordion:hover {
@@ -235,6 +265,15 @@ h1 {
   box-sizing: border-box;
 }
 
+.finalDelete {
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
+}
+
 .addButton,
 .deleteButton {
   text-decoration: none;
@@ -248,7 +287,7 @@ h1 {
   margin: 0 auto;
   cursor: pointer;
   max-width: 75%;
-  width: 300px;
+  width: 250px;
   margin-top: 12px;
 }
 
@@ -262,6 +301,33 @@ h1 {
 
 .addButton:hover {
   background-color: rgb(0, 192, 0);
+}
+
+.buttonBox .finalButtonCancel {
+  background-color: grey;
+}
+
+.buttonBox button {
+  text-decoration: none;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px;
+  cursor: pointer;
+  max-width: 75%;
+  width: 100px;
+}
+
+.buttonBox button:hover {
+  background-color: rgb(192, 0, 0);
+}
+
+.buttonBox .finalButtonCancel:hover {
+  background-color: rgb(157, 157, 157);
 }
 
 .section-url {
@@ -379,6 +445,29 @@ h1 {
   cursor: pointer;
 }
 
+.submit:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+  color: white;
+}
+
 .cancel:hover {
   background-color: rgb(192, 0, 0);
+}
+
+.socials {
+  width: 100vh;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  /* border: 2px solid var(--gold); */
+  /* margin: 20px; */
+}
+
+.socials img {
+  max-width: 100px;
+  max-height: 100px;
+  padding: 10px;
 }
