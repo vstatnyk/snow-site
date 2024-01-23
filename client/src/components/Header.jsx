@@ -15,40 +15,49 @@ export default function Header({ activeElement }) {
     <header>
       <ul className="navbar">
         <li>
-          <Link
-            className={
-              activeElement === "home" ? "navElement_active" : "navElement"
-            }
-            to="/home"
-          >
-            Home
+          <Link to="/home">
+            <button
+              className={
+                activeElement === "home"
+                  ? "navElement_active"
+                  : "navElementButton"
+              }
+            >
+              Home
+            </button>
           </Link>
         </li>
-        <li>
-          <Link
-            className={
-              activeElement === "about" ? "navElement_active" : "navElement"
-            }
-            to="/about"
-          >
-            About
+        {/* <li>
+          <Link to="/about">
+            <button
+              className={
+                activeElement === "about"
+                  ? "navElement_active"
+                  : "navElementButton"
+              }
+            >
+              About
+            </button>
           </Link>
-        </li>
+        </li> */}
         {isLoggedIn ? (
-          <li>
+          <li className="loginNav">
             <button className="navElementButton" onClick={logout}>
               Logout
             </button>
           </li>
         ) : (
-          <li>
-            <Link
-              className={
-                activeElement === "login" ? "navElement_active" : "navElement"
-              }
-              to="/login"
-            >
-              Login
+          <li className="loginNav">
+            <Link to="/login">
+              <button
+                className={
+                  activeElement === "login"
+                    ? "navElement_active"
+                    : "navElementButton"
+                }
+              >
+                Login
+              </button>
             </Link>
           </li>
         )}

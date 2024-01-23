@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 import { useLogin } from "../contexts/loginContext.jsx";
 import "../index.css";
-
 export default function Login() {
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
@@ -84,6 +84,7 @@ export default function Login() {
 
   return (
     <>
+      <Header activeElement="login" />
       {isLoggedIn ? (
         <></>
       ) : (

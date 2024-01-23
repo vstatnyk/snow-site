@@ -56,6 +56,16 @@ export default function Home() {
         <>
           <Header activeElement="home" />
           <div className="spacer"></div>
+          <h1>Upcoming Events</h1>
+          <div className="home">
+            {!homeElements ? <>no elements found</> : <div>{init()}</div>}
+            {isLoggedIn && (
+              <button onClick={togglePopUp} className="addButton">
+                add event +
+              </button>
+            )}
+          </div>
+          <div className="spacer"></div>
           <h1>Our Social Media</h1>
           <div className="socials">
             <a
@@ -79,16 +89,6 @@ export default function Home() {
             >
               <img src="/blackIG.png" alt="" className="instagram" />
             </a>
-          </div>
-
-          <h1>Upcoming events</h1>
-          <div className="home">
-            {!homeElements ? <>no elements found</> : <div>{init()}</div>}
-            {isLoggedIn && (
-              <button onClick={togglePopUp} className="addButton">
-                add event +
-              </button>
-            )}
           </div>
         </>
       )}
