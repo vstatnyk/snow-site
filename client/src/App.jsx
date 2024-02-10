@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { LoginProvider } from "./contexts/loginContext.jsx";
 import "./index.css";
 import About from "./pages/About.jsx";
@@ -10,7 +10,7 @@ import NoPage from "./pages/NoPage.jsx";
 function App() {
   return (
     <LoginProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -19,7 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </LoginProvider>
   );
 }
