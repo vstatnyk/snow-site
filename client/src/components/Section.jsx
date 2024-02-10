@@ -21,13 +21,16 @@ export default function Section(props) {
     const data = {
       key: props.elementKey,
     };
-    fetch("http://localhost:3000/delete/homeElement", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).catch((error) => {
+    fetch(
+      "http://" + import.meta.env.VITE_API_KEY + ":3000/delete/homeElement",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    ).catch((error) => {
       console.error("Error:", error);
     });
     refreshPage();

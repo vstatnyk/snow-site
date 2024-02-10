@@ -41,7 +41,7 @@ export default function PopUp({ sharedState, setSharedState }) {
       data.url = "http://" + data.url;
     }
 
-    fetch("http://localhost:3000/new/homeElement", {
+    fetch("http://" + import.meta.env.VITE_API_KEY + ":3000/new/homeElement", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

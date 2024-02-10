@@ -49,13 +49,16 @@ export default function Login() {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "http://" + import.meta.env.VITE_API_KEY + ":3000/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
       // console.log(response.data);
       if (!response.ok) {
         throw new Error("Failed to login");

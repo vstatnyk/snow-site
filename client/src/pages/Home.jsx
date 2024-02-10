@@ -11,11 +11,13 @@ export default function Home() {
   const { isLoggedIn } = useLogin();
 
   useEffect(() => {
-    fetch("http://localhost:3000/homeElements").then((response) =>
-      response.json().then((res) => {
-        setHomeElements(res);
-      })
+    fetch("http://" + import.meta.env.VITE_API_KEY + ":3000/homeElements").then(
+      (response) =>
+        response.json().then((res) => {
+          setHomeElements(res);
+        })
     );
+    // console.log(import.meta.env.API_KEY);
   }, []);
 
   function init() {
